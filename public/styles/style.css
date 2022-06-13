@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  height: auto;
+  margin: 30px auto;
+}
+
+.viewport {
+  display: block;
+  max-width: 1200px;
+  height: 675px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+
+.btn-wrapper {
+  width: fit-content;
+  position: absolute;
+  transform: translate(0, -50%);
+  background-color: rgb(88, 20, 20);
+  cursor: pointer;
+}
+
+.btn-wrapper:hover {
+  background-color: brown;
+  transition: background-color 0.2s ease-in;
+}
+
+.btn-left-wrapper {
+  padding: 25px 15px 25px 18px;
+  top: 50%;
+  left: 0%;
+}
+
+.btn-right-wrapper {
+  padding: 25px 18px 25px 15px;
+  top: 50%;
+  right: 0%;
+}
+
+.btn {
+  width: 20px;
+  height: 20px;
+  border-bottom: 5px solid white;
+  border-left: 5px solid white;
+}
+
+.btn-left {
+  transform: rotate(45deg);
+}
+
+.btn-right {
+  transform: rotate(-135deg);
+}
+
+.dots-wrapper {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  padding-bottom: 10px;
+}
+
+.dot {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+
+.dot:hover {
+  background-color: brown;
+  transition: background-color 0.2s ease-in;
+}
+
+.dot.active {
+  background-color: rgb(88, 20, 20);
+  transition: background-color 0.2s ease-in;
+}
