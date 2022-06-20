@@ -117,6 +117,10 @@ class Carousel {
       this.dot = document.createElement("div");
       this.dot.classList.add("dot");
       this.dotsWrapper.appendChild(this.dot);
+
+      if (i === 0) {
+        this.dot.classList.add("active");
+      }
     }
   }
 
@@ -148,12 +152,14 @@ class Carousel {
   animateSlide(range) {
     let count = 1;
     const id = setInterval(() => {
-      if (count === 60) {
+      if (count > 60) {
         clearInterval(id);
+        this.displayActiveDot();
+      } else {
+        count++;
+        this.carouselContainerLeft += range / 60;
+        this.carouselContainer.style.left = `${this.carouselContainerLeft}px`;
       }
-      count++;
-      this.carouselContainerLeft += range / 60;
-      this.carouselContainer.style.left = `${this.carouselContainerLeft}px`;
     }, 1000 / 60);
   }
 
@@ -162,20 +168,10 @@ class Carousel {
     const dots = document.querySelectorAll(".dot");
     for (let i = 0; i <= dots.length - 1; i++) {
       dots[i].addEventListener("click", () => {
-        // adds active class to the clicked dot
-        removeActiveClass();
-        dots[i].classList.add("active");
         // animate the slide related to the cliked dot
         animateSlideOnDotClick(i);
       });
     }
-
-    // removes the active class from all dots
-    const removeActiveClass = () => {
-      dots.forEach((dot) => {
-        dot.classList.remove("active");
-      });
-    };
 
     // calculates the range of the slide animation  and the animation is done
     const animateSlideOnDotClick = (i) => {
@@ -184,6 +180,21 @@ class Carousel {
       const range = dest - source; // range to animate from source to destination
       this.animateSlide(range); // animation function call
     };
+  }
+
+  // show different color for active dot
+  displayActiveDot() {
+    // removes the active class from all dots
+    const removeActiveClass = () => {
+      dots.forEach((dot) => {
+        dot.classList.remove("active");
+      });
+    };
+
+    const dots = document.querySelectorAll(".dot");
+    const activeDotIndex = Math.abs(this.carouselContainerLeft) / 1200;
+    removeActiveClass();
+    dots[activeDotIndex].classList.add("active");
   }
 }
 
